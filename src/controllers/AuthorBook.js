@@ -5,14 +5,18 @@ const { writeInDatabase } = require('../utils/database-utils')
 class AuthorBookController {
   static createBookWithAuthor (req, res) {
     const { bookId, authorId } = req.body
+    // find: busca os dados do autor e do livro a partir do json
     const author = authorData.find((author) => {
       return author.id === authorId
+      // pegar um só id de todos os autores
     })
 
+    // percorre o json e o que tiver vai para a variável book
     const book = bookData.find((book) => {
       return book.id === bookId
     })
 
+    // ...book: passar propriedades de book para newBookWithAuthor
     const newBookWithAuthor = { ...book, author }
     bookData.push(newBookWithAuthor)
     writeInDatabase(bookData, 'books')

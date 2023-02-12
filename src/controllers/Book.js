@@ -27,7 +27,7 @@ class BookController {
   }
 
   static updateBook (req, res) {
-    const response = req.query
+    const response = req.body
 
     const bookDataUpdated = bookData.map((book) => {
       if (book.id !== response.bookId) { return book }
@@ -53,6 +53,7 @@ class BookController {
     return res.json(books)
   }
 
+  // função privada
   static _getOneBook (bookId) {
     const book = _.find(bookData, (book) => book.id === bookId)
     return book
